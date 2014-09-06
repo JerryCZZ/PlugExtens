@@ -1,5 +1,5 @@
 {
-    "name": "PlugJerryScripto",
+    "name": "PlugExtens",
     "version": "0.0.7.1",
     "manifest_version": 2,
     "description": "Rozsireni pro plug.dj s autowootem atp.",
@@ -18,7 +18,7 @@
             "19": "images/icon-19.png",
             "38": "images/icon-38.png"
         },
-        "default_title": "SciptoPlug",
+        "default_title": "PlugExtens",
         "default_popup": "popup.html"
     },
     "content_scripts": [

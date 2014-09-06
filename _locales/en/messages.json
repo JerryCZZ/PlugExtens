@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "PlugWoot",
+    "description": "Plugin pro plug.dj na autowoot"
+  },
+  "appDescription": {
+    "message": "Plug.dj rozsireni",
+    "description": "Plugin pro plug.dj na autowoot"
+  }
+}

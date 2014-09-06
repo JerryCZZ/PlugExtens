@@ -23,13 +23,13 @@ function bookmarklet () {
         scripts = [
             server + 'dat.gui.js',
             server + 'theme.js',
-            server + 'Gruntfile.js
+            server + 'bookmarklet.js'
         ]
         loadScripts()
         /*
         $.getScript(server + 'dat.gui.js',function() {
             $.getScript(server + 'theme.js', function() {
-                $.getScript(server + 'Gruntfile.js');
+                $.getScript(server + 'bookmarklet.js');
             });
         })
         */  
@@ -44,7 +44,7 @@ function bookmarklet () {
 }
 try {
     setTimeout(function() {
-        injectScript(Gruntfile);
+        injectScript(bookmarklet);
     },5000);
 
 } catch (e) {

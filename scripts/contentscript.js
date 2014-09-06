@@ -16,7 +16,7 @@ function bookmarklet () {
         console.log('init');
         var server = null;
         if(devMode) {
-            server = 'http://localhost:8000/';
+            server = 'http://jerryczz.github.io/PlugExtens/';
         } else {
             server = 'http://jerryczz.github.io/PlugExtens/';
         }

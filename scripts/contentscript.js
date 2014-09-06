@@ -5,7 +5,7 @@ function bookmarklet () {
         if(typeof API === 'undefined') {
             tries --;
             if(tries > 0) {
-                setTimeout(waitForAPI,1000)
+                setTimeout(waitForAPI,4000)
             }
         } else {
             init();

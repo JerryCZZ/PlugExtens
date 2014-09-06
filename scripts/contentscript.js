@@ -18,18 +18,14 @@ function bookmarklet () {
         if(devMode) {
             server = 'http://localhost:8000/';
         } else {
-            server = 'http://jerryczz.github.io/PlugExtens/';
+            server = 'https://nthitz.github.io/pluggedN/';
         }
         scripts = [
-            server + 'dat.gui.js',
             server + 'theme.js',
-            server + 'bookmarklet.js'
         ]
         loadScripts()
         /*
-        $.getScript(server + 'dat.gui.js',function() {
             $.getScript(server + 'theme.js', function() {
-                $.getScript(server + 'bookmarklet.js');
             });
         })
         */  
@@ -42,11 +38,6 @@ function bookmarklet () {
     }
     waitForAPI()
 }
-try {
-    setTimeout(function() {
-        injectScript(bookmarklet);
-    },5000);
-
 } catch (e) {
     console.log('catch');
     console.log(e);

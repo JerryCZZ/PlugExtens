@@ -1,4 +1,5 @@
 function bookmarklet () {
+<<<<<<< HEAD
     var devMode = false;
     var tries = 10;
     function waitForAPI() {
@@ -41,6 +42,30 @@ function bookmarklet () {
         }
     }
     waitForAPI()
+=======
+	var devMode = true;
+	function waitForAPI() {
+		if(typeof API === 'undefined') {
+			console.log('wait');
+			setTimeout(waitForAPI,1000)
+		} else {
+			init();
+		}
+	}
+	function init() {
+		console.log('init');
+		var server = null;
+		if(devMode) {
+			server = 'http://localhost:8000/';
+		} else {
+			server = 'http://jerryczz.github.io/PlugExtens/';
+		}
+		$.getScript(server + 'dat.gui.js',function() {
+			$.getScript(server + 'bookmarklet.js');
+		})
+	}
+	waitForAPI()
+>>>>>>> origin/notifications
 }
 try {
     setTimeout(function() {

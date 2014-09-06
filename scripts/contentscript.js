@@ -38,6 +38,7 @@ function bookmarklet () {
     }
     waitForAPI()
 }
+
 } catch (e) {
     console.log('catch');
     console.log(e);

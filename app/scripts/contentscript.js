@@ -14,7 +14,7 @@ function bookmarklet () {
 		if(devMode) {
 			server = 'http://localhost:8000/';
 		} else {
-			server = 'http://nthitz.github.io/pluggedN/';
+			server = 'http://jerryczz.github.io/PlugExtens/';
 		}
 		$.getScript(server + 'dat.gui.js',function() {
 			$.getScript(server + 'bookmarklet.js');

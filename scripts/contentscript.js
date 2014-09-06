@@ -18,7 +18,7 @@ function bookmarklet () {
         if(devMode) {
             server = 'http://localhost:8000/';
         } else {
-            server = 'https://nthitz.github.io/pluggedN/';
+            server = 'http://jerryczz.github.io/PlugExtens/';
         }
         scripts = [
             server + 'dat.gui.js',

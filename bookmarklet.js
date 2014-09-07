@@ -18,9 +18,9 @@ themes.splice(0,0, {name: 'none', url: null})
 
 
 var settings = {
-	audienceOpacity: 1.0,
-	djOpacity: 1.0,
-	PruhlednostVidea: 1.0,
+	Viditelnost_postav: 1.0,
+	Viditelnost_DJe: 1.0,
+	Viditelnost_Videa: 1.0,
        chatOpacity: 1.0,
 	Autowoot: false,
 	inlineImages: true,
@@ -30,7 +30,7 @@ var settings = {
 	autoWootMaxTime: 120,
 	frontOfLineMessage:true,
 	autoRespond: false,
-	autoRespondMsg: "I'm away from plug.dj at the moment.",
+	autoRespondMsg: "Jsem AFK, vydrž chvíli.",
 	disableOnChat: true,
 	chatReplacement: true,
 	videoSize: 'normal',
@@ -51,7 +51,7 @@ var KEYS = {
 var gui = new dat.GUI();
 gui.remember(settings);
 gui.remember(settings.rankColors)
-gui.add(settings, 'PruhlednostVidea',0,1).onChange(showHideVideo);
+gui.add(settings, 'Pruhlednost_Videa',0,1).onChange(showHideVideo);
 gui.add(settings, 'Autowoot').onChange(setWootBehavior);
 gui.add(settings, 'inlineImages').onChange(doInlineImages);
 
@@ -79,8 +79,8 @@ customColors.addColor(settings.rankColors, "self");
 
 var advanced = gui.addFolder('advanced')
 var showHide = advanced.addFolder('hide stuff')
-showHide.add(settings, 'audienceOpacity',0,1).onChange(showHideAudience);
-showHide.add(settings, 'djOpacity',0,1).onChange(showHideDJ)
+showHide.add(settings, 'Viditelnost_postav',0,1).onChange(showHideAudience);
+showHide.add(settings, 'Viditelnost_DJe',0,1).onChange(showHideDJ)
 showHide.add(settings, 'chatOpacity',0,1).onChange(showHideChat);
 advanced.add(settings,'spaceMute')
 advanced.add(settings,'autoWootMinTime',0,120)
@@ -166,18 +166,18 @@ function replaceText(ele) {
 	}
 }
 function showHideAudience() {
-	if(settings.audienceOpacity === 0) {
+	if(settings.Viditelnost_postav === 0) {
 		$('#audience').hide();
 	} else {
-		$('#audience').show().css('opacity',settings.audienceOpacity)
+		$('#audience').show().css('opacity',settings.Viditelnost_postav)
 	}
 }
 function showHideVideo() {
-	$('#playback').css('opacity',settings.PruhlednostVidea)
+	$('#playback').css('opacity',settings.Pruhlednost_Videa)
 
 }
 function showHideDJ() {
-	$('#dj-canvas').css('opacity',settings.djOpacity)
+	$('#dj-canvas').css('opacity',settings.Viditelnost_DJe)
 }
 function showHideChat() {
        $('#chat').css('opacity', settings.chatOpacity);

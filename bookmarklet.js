@@ -18,23 +18,23 @@ themes.splice(0,0, {name: 'none', url: null})
 
 
 var settings = {
-	ViditelnostPostav: 1.0,
-	ViditelnostDJe: 1.0,
-	ViditelnostVidea: 1.0,
-       ViditelnostChatu: 1.0,
-	Autowoot: false,
-	VlozeneObrazky: true,
-	Vzhled:0,
+	audienceOpacity: 1.0,
+	djOpacity: 1.0,
+	videoOpacity: 1.0,
+       chatOpacity: 1.0,
+	autowoot: false,
+	inlineImages: true,
+	theme:0,
 	spaceMute: true,
-	autoWootMinTime: 2,
+	autoWootMinTime: 5,
 	autoWootMaxTime: 120,
 	frontOfLineMessage:true,
-	AutoOdpoved: false,
-	Zprava: "Jsem AFK, vydrž chvíli.",
-	VypnoutPriChatu: true,
+	autoRespond: false,
+	autoRespondMsg: "Jsem AFK, vydrž chvíli",
+	disableOnChat: true,
 	chatReplacement: true,
-	VelikostVidea: 'normalni',
-	NastaveniBarev: false,
+	videoSize: 'normal',
+	customColors: false,
 	rankColors: {
 		host: "#ac76ff",
 		manager: "#ac76ff",
@@ -51,24 +51,24 @@ var KEYS = {
 var gui = new dat.GUI();
 gui.remember(settings);
 gui.remember(settings.rankColors)
-gui.add(settings, 'ViditelnostVidea',0,1).onChange(showHideVideo);
-gui.add(settings, 'Autowoot').onChange(setWootBehavior);
-gui.add(settings, 'VlozeneObrazky').onChange(doInlineImages);
+gui.add(settings, 'videoOpacity',0,1).onChange(showHideVideo);
+gui.add(settings, 'autowoot').onChange(setWootBehavior);
+gui.add(settings, 'inlineImages').onChange(doInlineImages);
 
-gui.add(settings,'VelikostVidea', ['Normalni','Velky']).onChange(updateVideoSize)
+gui.add(settings,'videoSize', ['normal','large']).onChange(updateVideoSize)
 var themeSettingsObject = {}
 for(var i = 0; i < themes.length; i++) {
 	var theme = themes[i];
 	themeSettingsObject[theme.name] = i;
 }
-gui.add(settings, 'Vzhled', themeSettingsObject).onChange(showTheme)
-var afk = gui.addFolder('AutoOdpoved')
-afk.add(settings, "AutoOdpoved")
-afk.add(settings, "Zprava")
-afk.add(settings, "VypnoutPriChatu") //listen didn't seem to work
+gui.add(settings, 'theme', themeSettingsObject).onChange(showTheme)
+var afk = gui.addFolder('autoRespond')
+afk.add(settings, "autoRespond")
+afk.add(settings, "autoRespondMsg")
+afk.add(settings, "disableOnChat") //listen didn't seem to work
 
-var customColors = gui.addFolder('Nastaveni barev')
-customColors.add(settings, "NastaveniBarev").onChange(applyCustomColorsClass)
+var customColors = gui.addFolder('custom colors')
+customColors.add(settings, "customColors").onChange(applyCustomColorsClass)
 customColors.addColor(settings.rankColors, "host")
 customColors.addColor(settings.rankColors, "manager")
 customColors.addColor(settings.rankColors, "bouncer")
@@ -79,9 +79,9 @@ customColors.addColor(settings.rankColors, "self");
 
 var advanced = gui.addFolder('advanced')
 var showHide = advanced.addFolder('hide stuff')
-showHide.add(settings, 'ViditelnostPostav',0,1).onChange(showHideAudience);
-showHide.add(settings, 'ViditelnostDJe',0,1).onChange(showHideDJ)
-showHide.add(settings, 'ViditelnostChatu',0,1).onChange(showHideChat);
+showHide.add(settings, 'audienceOpacity',0,1).onChange(showHideAudience);
+showHide.add(settings, 'djOpacity',0,1).onChange(showHideDJ)
+showHide.add(settings, 'chatOpacity',0,1).onChange(showHideChat);
 advanced.add(settings,'spaceMute')
 advanced.add(settings,'autoWootMinTime',0,120)
 advanced.add(settings,'autoWootMaxTime',0,120)
@@ -166,21 +166,21 @@ function replaceText(ele) {
 	}
 }
 function showHideAudience() {
-	if(settings.ViditelnostPostav === 0) {
+	if(settings.audienceOpacity === 0) {
 		$('#audience').hide();
 	} else {
-		$('#audience').show().css('opacity',settings.ViditelnostPostav)
+		$('#audience').show().css('opacity',settings.audienceOpacity)
 	}
 }
 function showHideVideo() {
-	$('#playback').css('opacity',settings.ViditelnostVidea)
+	$('#playback').css('opacity',settings.videoOpacity)
 
 }
 function showHideDJ() {
-	$('#dj-canvas').css('opacity',settings.ViditelnostDJe)
+	$('#dj-canvas').css('opacity',settings.djOpacity)
 }
 function showHideChat() {
-       $('#chat').css('opacity', settings.ViditelnostChatu);
+       $('#chat').css('opacity', settings.chatOpacity);
 }
 
 function chatReceived(data) {
@@ -202,7 +202,7 @@ function chatReceived(data) {
 			var now = new Date().getTime();
 			var validTime = now - timeLimitPerUser;
 			if(typeof autoResponseSentTimes[data.un] === 'undefined' || autoResponseSentTimes[data.un] < validTime) {
-				var response = '@' + data.un + ' ' + settings.Zprava;
+				var response = '@' + data.un + ' ' + settings.autoRespondMsg;
 				API.sendChat(response);
 				autoResponseSentTimes[data.un] = now;
 			}
@@ -269,7 +269,7 @@ function advance(obj)
 	clearTimeout(djCheckTimeout);
 	if (obj == null) return; // no dj
 
-	if(settings.Autowoot) {
+	if(settings.autowoot) {
 		var minTime = settings.autoWootMinTime * 1000;
 		var maxTime = settings.autoWootMaxTime * 1000;
 		if(maxTime < minTime) {
@@ -292,8 +292,8 @@ function advance(obj)
 	}
 }
 function setWootBehavior() {
-	//console.log('set woot' + settings.Autowoot)
-	if(settings.Autowoot) {
+	//console.log('set woot' + settings.autowoot)
+	if(settings.autowoot) {
 		voteTimeout = setTimeout(vote,10000);
 	} else {
 		clearTimeout(voteTimeout)
@@ -338,7 +338,7 @@ function showTheme() {
 		originalTheme = $(bgSelector).css('background-image');
 	}
 	var theme = themes[settings.theme];
-	if(settings.videoSize === 'normalni') {
+	if(settings.videoSize === 'normal') {
 		//console.log(theme);
 		if(theme.name === 'none') {
 			$(bgSelector).css('background-image', originalTheme);
@@ -407,9 +407,9 @@ function updateFolders(f) {
 	}
 }
 function updateVideoSize() {
-	if(settings.videoSize === 'Normalni') {
+	if(settings.videoSize === 'normal') {
 		applyNormalVideo()
-	} else if(settings.videoSize === 'Velky') {
+	} else if(settings.videoSize === 'large') {
 		applyLargeVideo()
 
 	}

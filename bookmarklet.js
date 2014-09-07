@@ -20,7 +20,7 @@ themes.splice(0,0, {name: 'none', url: null})
 var settings = {
 	audienceOpacity: 1.0,
 	djOpacity: 1.0,
-	videoOpacity: 0.7,
+	Průhlednost Videa: 1.0,
        chatOpacity: 1.0,
 	Autowoot: false,
 	inlineImages: true,
@@ -51,7 +51,7 @@ var KEYS = {
 var gui = new dat.GUI();
 gui.remember(settings);
 gui.remember(settings.rankColors)
-gui.add(settings, 'videoOpacity',0,1).onChange(showHideVideo);
+gui.add(settings, 'Průhlednost Videa',0,1).onChange(showHideVideo);
 gui.add(settings, 'Autowoot').onChange(setWootBehavior);
 gui.add(settings, 'inlineImages').onChange(doInlineImages);
 
@@ -173,7 +173,7 @@ function showHideAudience() {
 	}
 }
 function showHideVideo() {
-	$('#playback').css('opacity',settings.videoOpacity)
+	$('#playback').css('opacity',settings.Průhlednost Videa)
 
 }
 function showHideDJ() {

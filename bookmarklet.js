@@ -22,7 +22,7 @@ var settings = {
 	Viditelnost_DJe: 1.0,
 	Viditelnost_videa: 1.0,
        Viditelnost_chatu: 1.0,
-	Automaticky_woot: false,
+	Automaticky\xa0woot: false,
 	inlineImages: true,
 	theme:0,
 	spaceMute: true,
@@ -86,6 +86,7 @@ advanced.add(settings,'spaceMute')
 advanced.add(settings,'autoWootMinTime',0,120)
 advanced.add(settings,'autoWootMaxTime',0,120)
 advanced.add(settings,'frontOfLineMessage')
+advanced.add(settings,'Seznam_smajliku')
 advanced.add(settings, "chatReplacement")
 $('.dg').css("z-index",30).css('right','auto').css('top','65px')
 $('.dg .save-row').hide()
@@ -143,6 +144,19 @@ function documentKeyDown(event) {
 	}
 
 }
+function documentKeyDown(event) {
+	var target = event.target.tagName.toLowerCase()
+	if(target === 'input') {
+		if($(event.target).attr('id') === 'chat-input-field' && settings.Seznam_smajliku) {
+			replaceText(event.target)
+		}
+		return;
+	}
+	if(event.which === KEYS.SPACE && settings.spaceMute) {
+		$('#volume .button').click()
+  }
+
+}   
 function replaceText(ele) {
 	var replacements = {
 		'/whatever': '-\\_(?)_/-',

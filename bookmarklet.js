@@ -24,7 +24,7 @@ var settings = {
        Viditelnost_chatu: 1.0,
 	Automaticky_woot: false,
 	inlineImages: true,
-	theme:0,
+	Vzhled:0,
 	spaceMute: true,
 	autoWootMinTime: 5,
 	autoWootMaxTime: 120,
@@ -58,10 +58,10 @@ gui.add(settings, 'inlineImages').onChange(doInlineImages);
 gui.add(settings,'videoSize', ['normal','large']).onChange(updateVideoSize)
 var themeSettingsObject = {}
 for(var i = 0; i < themes.length; i++) {
-	var theme = themes[i];
+	var Vzhled = themes[i];
 	themeSettingsObject[theme.name] = i;
 }
-gui.add(settings, 'theme', themeSettingsObject).onChange(showTheme)
+gui.add(settings, 'Vzhled', themeSettingsObject).onChange(showTheme)
 var afk = gui.addFolder('autoRespond')
 afk.add(settings, "autoRespond")
 afk.add(settings, "autoRespondMsg")
@@ -330,18 +330,18 @@ function checkIfDJing() {
 }
 function showTheme() {
 	var bgSelector = '.room-background'
-	//console.log('show theme');
+	//console.log('show Vzhled');
 	if($(bgSelector).length === 0) {
 		setTimeout(showTheme, 500)
 	}
 	if(originalTheme === null) {
 		originalTheme = $(bgSelector).css('background-image');
 	}
-	var theme = themes[settings.theme];
+	var Vzhled = themes[settings.theme];
 	if(settings.videoSize === 'normal') {
-		//console.log(theme);
+		//console.log(Vzhled);
 		if(theme.name === 'none') {
-			$(bgSelector).css('background-image', originalTheme);
+			$(bgSelector).css('background-image', originaltheme);
 			$('#playback .background').show();
 		} else {
 			$(bgSelector).css('background-image', 'url(https://i.imgur.com/'+theme.url+'.png)');

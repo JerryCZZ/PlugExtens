@@ -22,7 +22,7 @@ var settings = {
 	djOpacity: 1.0,
 	videoOpacity: 1.0,
        chatOpacity: 1.0,
-	Automatick˜ woot: false,
+	Automatick&yacute; woot: false,
 	inlineImages: true,
 	theme:0,
 	spaceMute: true,
@@ -30,7 +30,7 @@ var settings = {
 	autoWootMaxTime: 120,
 	frontOfLineMessage:true,
 	autoRespond: false,
-	autoRespondMsg: "Jsem AFK, vydr‘ chv¡li",
+	autoRespondMsg: "Jsem AFK, vydrž chvíli",
 	disableOnChat: true,
 	chatReplacement: true,
 	videoSize: 'normal',
@@ -52,7 +52,7 @@ var gui = new dat.GUI();
 gui.remember(settings);
 gui.remember(settings.rankColors)
 gui.add(settings, 'videoOpacity',0,1).onChange(showHideVideo);
-gui.add(settings, 'Automatick˜ woot').onChange(setWootBehavior);
+gui.add(settings, 'Automatick&yacute woot').onChange(setWootBehavior);
 gui.add(settings, 'inlineImages').onChange(doInlineImages);
 
 gui.add(settings,'videoSize', ['normal','large']).onChange(updateVideoSize)
@@ -269,7 +269,7 @@ function advance(obj)
 	clearTimeout(djCheckTimeout);
 	if (obj == null) return; // no dj
 
-	if(settings.Automatick˜ woot) {
+	if(settings.Automatick&yacute woot) {
 		var minTime = settings.autoWootMinTime * 1000;
 		var maxTime = settings.autoWootMaxTime * 1000;
 		if(maxTime < minTime) {
@@ -292,8 +292,8 @@ function advance(obj)
 	}
 }
 function setWootBehavior() {
-	//console.log('set woot' + settings.Automatick˜ woot)
-	if(settings.Automatick˜ woot) {
+	//console.log('set woot' + settings.Automatick&yacute woot)
+	if(settings.Automatick&yacute woot) {
 		voteTimeout = setTimeout(vote,10000);
 	} else {
 		clearTimeout(voteTimeout)

@@ -55,7 +55,7 @@ gui.add(settings, 'ViditelnostVidea',0,1).onChange(showHideVideo);
 gui.add(settings, 'Autowoot').onChange(setWootBehavior);
 gui.add(settings, 'VlozeneObrazky').onChange(doInlineImages);
 
-gui.add(settings,'VelikostVidea', ['Normalni','Velky']).onChange(updateVideoSize)
+gui.add(settings,'VelikostVidea', ['Normalni','large']).onChange(updateVideoSize)
 var themeSettingsObject = {}
 for(var i = 0; i < themes.length; i++) {
 	var theme = themes[i];

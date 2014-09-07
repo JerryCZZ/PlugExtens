@@ -22,7 +22,7 @@ var settings = {
 	djOpacity: 1.0,
 	videoOpacity: 1.0,
        chatOpacity: 1.0,
-	autowoot: false,
+	Automaticky woot: false,
 	inlineImages: true,
 	theme:0,
 	spaceMute: true,
@@ -30,11 +30,11 @@ var settings = {
 	autoWootMaxTime: 120,
 	frontOfLineMessage:true,
 	autoRespond: false,
-	autoRespondMsg: "Jsem AFK, vydrž chvíli",
+	autoRespondMsg: "Jsem AFK, vydr� chv�li",
 	disableOnChat: true,
 	chatReplacement: true,
 	videoSize: 'normal',
-	customColors: false,
+	NastaveniBarev: false,
 	rankColors: {
 		host: "#ac76ff",
 		manager: "#ac76ff",
@@ -52,7 +52,7 @@ var gui = new dat.GUI();
 gui.remember(settings);
 gui.remember(settings.rankColors)
 gui.add(settings, 'videoOpacity',0,1).onChange(showHideVideo);
-gui.add(settings, 'autowoot').onChange(setWootBehavior);
+gui.add(settings, 'Automaticky woot').onChange(setWootBehavior);
 gui.add(settings, 'inlineImages').onChange(doInlineImages);
 
 gui.add(settings,'videoSize', ['normal','large']).onChange(updateVideoSize)
@@ -67,15 +67,15 @@ afk.add(settings, "autoRespond")
 afk.add(settings, "autoRespondMsg")
 afk.add(settings, "disableOnChat") //listen didn't seem to work
 
-var customColors = gui.addFolder('custom colors')
-customColors.add(settings, "customColors").onChange(applyCustomColorsClass)
-customColors.addColor(settings.rankColors, "host")
-customColors.addColor(settings.rankColors, "manager")
-customColors.addColor(settings.rankColors, "bouncer")
-customColors.addColor(settings.rankColors, "resident_dj")
-customColors.addColor(settings.rankColors, "regular")
-//customColors.addColor(settings.rankColors, "friend")    // Don't see the ability to get friends from the API
-customColors.addColor(settings.rankColors, "self");
+var NastaveniBarev = gui.addFolder('Nastaveni Barev')
+NastaveniBarev.add(settings, "NastaveniBarev").onChange(applyNastaveniBarevClass)
+NastaveniBarev.addColor(settings.rankColors, "host")
+NastaveniBarev.addColor(settings.rankColors, "manager")
+NastaveniBarev.addColor(settings.rankColors, "bouncer")
+NastaveniBarev.addColor(settings.rankColors, "resident_dj")
+NastaveniBarev.addColor(settings.rankColors, "regular")
+//NastaveniBarev.addColor(settings.rankColors, "friend")    // Don't see the ability to get friends from the API
+NastaveniBarev.addColor(settings.rankColors, "self");
 
 var advanced = gui.addFolder('advanced')
 var showHide = advanced.addFolder('hide stuff')
@@ -110,7 +110,7 @@ function once() {
 		'#room.largePlayer #playback { width: 100% !important; height: 101% !important; left:0 !important; pointer-events:none !important; }' +
 		'#room.largePlayer #playback-container { width: 100% !important; height: 100% !important; pointer-events:none !important; }' +
 		'#room.largePlayer #yt-frame { pointer-events: none !important; }' +
-		'body.customColors #chat .message .from { color: rgba(0,0,0,0); } '
+		'body.NastaveniBarev #chat .message .from { color: rgba(0,0,0,0); } '
 		+ '</style>')
 	$('#meh').on('click', mehClicked);
 	//console.log('window key handler');
@@ -128,7 +128,7 @@ function once() {
 	showTheme()
 	setTimeout(showTheme,3000);
 	setTimeout(showTheme,8000);
-	applyCustomColorsClass()
+	applyNastaveniBarevClass()
 }
 function documentKeyDown(event) {
 	var target = event.target.tagName.toLowerCase()
@@ -145,13 +145,13 @@ function documentKeyDown(event) {
 }
 function replaceText(ele) {
 	var replacements = {
-		'/whatever': '¯\\_(ツ)_/¯',
-		'/tableflip': '(╯°□°）╯︵ ┻━┻',
-		'/tablefix': '┬─┬ノ( º _ ºノ)',
-		'/monocle': 'ಠ_ರೃ',
-		'/disapproval': 'ಠ_ಠ',
-		'/donger': 'ヽ༼ຈل͜ຈ༽ﾉ',
-		'/give': '༼ つ ◕◡◕ ༽つ'
+		'/whatever': '-\\_(?)_/-',
+		'/tableflip': '(?�?�)?? ???',
+		'/tablefix': 'T|T?( o _ o?)',
+		'/monocle': '?_??',
+		'/disapproval': '?_?',
+		'/donger': '????????',
+		'/give': '? ? ??? ??'
 	}
 	$ele = $(ele);
 	var curText = $ele.val();
@@ -208,21 +208,21 @@ function chatReceived(data) {
 			}
 		}
 	}
-	if(settings.customColors) {
+	if(settings.NastaveniBarev) {
 		defer(function() {
-			applyCustomColors(data)
+			applyNastaveniBarev(data)
 		})
 	}
 
 }
-function applyCustomColorsClass() {
-	if(settings.customColors) {
-		$('body').addClass('customColors')
+function applyNastaveniBarevClass() {
+	if(settings.NastaveniBarev) {
+		$('body').addClass('NastaveniBarev')
 	} else {
-		$('body').removeClass('customColors')
+		$('body').removeClass('NastaveniBarev')
 	}
 }
-function applyCustomColors(message) {
+function applyNastaveniBarev(message) {
 	//console.log(message);
 	var sel = '[data-cid="' + message.cid +  '"] .from'
 	var mods = API.getStaff()
@@ -269,7 +269,7 @@ function advance(obj)
 	clearTimeout(djCheckTimeout);
 	if (obj == null) return; // no dj
 
-	if(settings.autowoot) {
+	if(settings.Automaticky woot) {
 		var minTime = settings.autoWootMinTime * 1000;
 		var maxTime = settings.autoWootMaxTime * 1000;
 		if(maxTime < minTime) {
@@ -292,8 +292,8 @@ function advance(obj)
 	}
 }
 function setWootBehavior() {
-	//console.log('set woot' + settings.autowoot)
-	if(settings.autowoot) {
+	//console.log('set woot' + settings.Automaticky woot)
+	if(settings.Automaticky woot) {
 		voteTimeout = setTimeout(vote,10000);
 	} else {
 		clearTimeout(voteTimeout)

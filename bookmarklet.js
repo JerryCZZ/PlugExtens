@@ -33,7 +33,7 @@ var settings = {
 	autoRespondMsg: "Jsem AFK, vydrž chvíli.",
 	disableOnChat: true,
 	chatReplacement: true,
-	VelikostVidea: 'normal',
+	VelikostVidea: 'normalni',
 	customColors: false,
 	rankColors: {
 		host: "#ac76ff",
@@ -55,7 +55,7 @@ gui.add(settings, 'ViditelnostVidea',0,1).onChange(showHideVideo);
 gui.add(settings, 'Autowoot').onChange(setWootBehavior);
 gui.add(settings, 'VlozeneObrazky').onChange(doInlineImages);
 
-gui.add(settings,'VelikostVidea', ['normal','large']).onChange(updateVideoSize)
+gui.add(settings,'VelikostVidea', ['Normalni','Velky']).onChange(updateVideoSize)
 var themeSettingsObject = {}
 for(var i = 0; i < themes.length; i++) {
 	var theme = themes[i];
@@ -279,7 +279,7 @@ function advance(obj)
 		var timer = minTime + diffTime * Math.random();
 		voteTimeout = setTimeout(vote,timer);
 	}
-	if(settings.videoSize === 'large') {
+	if(settings.videoSize === 'Velky') {
 		setTimeout(insertLargeCSS, 200)
 	}
 	if(settings.frontOfLineMessage) {
@@ -338,7 +338,7 @@ function showTheme() {
 		originalTheme = $(bgSelector).css('background-image');
 	}
 	var theme = themes[settings.theme];
-	if(settings.videoSize === 'normal') {
+	if(settings.videoSize === 'normalni') {
 		//console.log(theme);
 		if(theme.name === 'none') {
 			$(bgSelector).css('background-image', originalTheme);
@@ -407,9 +407,9 @@ function updateFolders(f) {
 	}
 }
 function updateVideoSize() {
-	if(settings.videoSize === 'normal') {
+	if(settings.videoSize === 'normalni') {
 		applyNormalVideo()
-	} else if(settings.videoSize === 'large') {
+	} else if(settings.videoSize === 'Velky') {
 		applyLargeVideo()
 
 	}

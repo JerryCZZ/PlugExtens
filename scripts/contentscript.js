@@ -24,12 +24,14 @@ function bookmarklet () {
             server + 'dat.gui.js',
             server + 'theme.js',
             server + 'bookmarklet.js'
+            server + 'emojiselector.js'
         ]
         loadScripts()
         /*
         $.getScript(server + 'dat.gui.js',function() {
-            $.getScript(server + 'theme.js', function() {
-                $.getScript(server + 'bookmarklet.js');
+            $.getScript(server + 'theme.js', function()
+                $.getScript(server + 'bookmarklet.js') {
+                    $.getScript(server + 'emojiselector.js');
             });
         })
         */  

@@ -51,10 +51,9 @@ var KEYS = {
 var gui = new dat.GUI();
 gui.remember(settings);
 gui.remember(settings.rankColors)
-gui.add(settings, 'PruhlednostVidea',0,1).onChange(showHideVideo);
+gui.add(settings, 'ViditelnostVidea',0,1).onChange(showHideVideo);
 gui.add(settings, 'Autowoot').onChange(setWootBehavior);
-gui.add(settings, '
-').onChange(doVlozeneObrazky);
+gui.add(settings, 'VlozeneObrazky').onChange(doInlineImages);
 
 gui.add(settings,'videoSize', ['normal','large']).onChange(updateVideoSize)
 var themeSettingsObject = {}
@@ -94,7 +93,7 @@ $('.dg select').css('width', '130px')
 
 //$('body').css('background-size', '100%')
 var originalTheme = null;
-var VlozeneObrazkyInterval = null;
+var inlineImagesInterval = null;
 $(once);
 function once() {
 	if(typeof ran !== "undefined") {
@@ -121,7 +120,7 @@ function once() {
 	showHideVideo();
        showHideChat();
 
-	doVlozeneObrazky();
+	doInlineImages();
 	//console.log(themes)
 	
 	setWootBehavior();
@@ -174,7 +173,7 @@ function showHideAudience() {
 	}
 }
 function showHideVideo() {
-	$('#playback').css('opacity',settings.PruhlednostVidea)
+	$('#playback').css('opacity',settings.ViditelnostVidea)
 
 }
 function showHideDJ() {
@@ -354,10 +353,10 @@ function showTheme() {
 	}
 }
 
-function doVlozeneObrazky() {
-	if(settings.VlozeneObrazky) {
+function doInlineImages() {
+	if(settings.inlineImages) {
 		//console.log('set interval');
-		VlozeneObrazkyInterval = setInterval(function() {
+		inlineImagesInterval = setInterval(function() {
 		    $(".closeImage").off("click");
 		    $(".closeImage").on("click", function () {
 		        var parent = $(this).parent();
@@ -389,7 +388,7 @@ function doVlozeneObrazky() {
 		    })
 		},1e3)
 	} else {
-		clearInterval(VlozeneObrazkyInterval)
+		clearInterval(inlineImagesInterval)
 	}
 }
 

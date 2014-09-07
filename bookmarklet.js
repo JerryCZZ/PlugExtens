@@ -51,7 +51,7 @@ var KEYS = {
 var gui = new dat.GUI();
 gui.remember(settings);
 gui.remember(settings.rankColors)
-gui.add(settings, 'PruhlednostVidea',0,1).onChange(showHideVideo);
+gui.add(settings, 'ViditelnostVidea',0,1).onChange(showHideVideo);
 gui.add(settings, 'Autowoot').onChange(setWootBehavior);
 gui.add(settings, 'inlineImages').onChange(doInlineImages);
 
@@ -173,7 +173,7 @@ function showHideAudience() {
 	}
 }
 function showHideVideo() {
-	$('#playback').css('opacity',settings.PruhlednostVidea)
+	$('#playback').css('opacity',settings.ViditelnostVidea)
 
 }
 function showHideDJ() {

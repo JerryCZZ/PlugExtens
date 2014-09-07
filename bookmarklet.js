@@ -29,7 +29,7 @@ var settings = {
 	autoWootMinTime: 60,
 	autoWootMaxTime: 120,
 	frontOfLineMessage:true,
-	autoRespond: false,
+	AutoOdpoved: false,
 	autoRespondMsg: "Jsem AFK, vydrž chvíli.",
 	disableOnChat: true,
 	chatReplacement: true,
@@ -55,17 +55,17 @@ gui.add(settings, 'ViditelnostVidea',0,1).onChange(showHideVideo);
 gui.add(settings, 'Autowoot').onChange(setWootBehavior);
 gui.add(settings, 'VlozeneObrazky').onChange(doInlineImages);
 
-gui.add(settings,'VelikostVidea', ['Normalni','large']).onChange(updateVideoSize)
+gui.add(settings,'VelikostVidea', ['Normalni','Velky']).onChange(updateVideoSize)
 var themeSettingsObject = {}
 for(var i = 0; i < themes.length; i++) {
 	var theme = themes[i];
 	themeSettingsObject[theme.name] = i;
 }
 gui.add(settings, 'Vzhled', themeSettingsObject).onChange(showTheme)
-var afk = gui.addFolder('autoRespond')
-afk.add(settings, "autoRespond")
-afk.add(settings, "autoRespondMsg")
-afk.add(settings, "disableOnChat") //listen didn't seem to work
+var afk = gui.addFolder('AutoOdpoved')
+afk.add(settings, "AutoOdpoved")
+afk.add(settings, "Zprava")
+afk.add(settings, "VypnoutPriChatu") //listen didn't seem to work
 
 var customColors = gui.addFolder('custom colors')
 customColors.add(settings, "customColors").onChange(applyCustomColorsClass)
@@ -407,9 +407,9 @@ function updateFolders(f) {
 	}
 }
 function updateVideoSize() {
-	if(settings.videoSize === 'normalni') {
+	if(settings.videoSize === 'Normalni') {
 		applyNormalVideo()
-	} else if(settings.videoSize === 'large') {
+	} else if(settings.videoSize === 'Velky') {
 		applyLargeVideo()
 
 	}

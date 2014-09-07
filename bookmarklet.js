@@ -30,7 +30,7 @@ var settings = {
 	autoWootMaxTime: 120,
 	frontOfLineMessage:true,
 	autoRespond: false,
-	autoRespondMsg: "Jsem AFK, vydrž chvíli",
+	autoRespondMsg: "Jsem AFK, vydrÅ¾ chvÃ­li",
 	disableOnChat: true,
 	chatReplacement: true,
 	videoSize: 'normal',
@@ -146,7 +146,7 @@ function documentKeyDown(event) {
 function replaceText(ele) {
 	var replacements = {
 		'/whatever': '-\\_(?)_/-',
-		'/tableflip': '(?°?°)?? ???',
+		'/tableflip': '(?Â°?Â°)?? ???',
 		'/tablefix': 'T|T?( o _ o?)',
 		'/monocle': '?_??',
 		'/disapproval': '?_?',

@@ -22,7 +22,7 @@ var settings = {
 	Viditelnost_DJe: 1.0,
 	Viditelnost_videa: 1.0,
        Viditelnost_chatu: 1.0,
-	Automaticky\xa0woot: false,
+	Automaticky_woot: false,
 	inlineImages: true,
 	theme:0,
 	spaceMute: true,

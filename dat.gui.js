@@ -1976,8 +1976,8 @@ dat.GUI = dat.gui.GUI = (function (css, saveDialogueContents, styleSheet, contro
   GUI.CLASS_DRAG = 'drag';
 
   GUI.DEFAULT_WIDTH = 300;
-  GUI.TEXT_CLOSED = 'Zavøit Extens';
-  GUI.TEXT_OPEN = 'Otevøít Extens';
+  GUI.TEXT_CLOSED = 'Zavrit Extens';
+  GUI.TEXT_OPEN = 'Otevrit Extens';
 
   /*
   //how about no.

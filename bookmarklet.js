@@ -29,12 +29,12 @@ var settings = {
 	autoWootMinTime: 2,
 	autoWootMaxTime: 120,
 	frontOfLineMessage:true,
-	AutoOdpoved: false,
+	Auto Odpoved: false,
 	Zprava: "Jsem AFK, vydrž chvíli.",
 	VypnoutPriChatu: true,
 	chatReplacement: true,
 	VelikostVidea: 'normalni',
-	customColors: false,
+	NastaveniBarev: false,
 	rankColors: {
 		host: "#ac76ff",
 		manager: "#ac76ff",
@@ -62,12 +62,12 @@ for(var i = 0; i < themes.length; i++) {
 	themeSettingsObject[theme.name] = i;
 }
 gui.add(settings, 'Vzhled', themeSettingsObject).onChange(showTheme)
-var afk = gui.addFolder('AutoOdpoved')
+var afk = gui.addFolder('Auto Odpoved')
 afk.add(settings, "AutoOdpoved")
 afk.add(settings, "Zprava")
 afk.add(settings, "VypnoutPriChatu") //listen didn't seem to work
 
-var customColors = gui.addFolder('custom colors')
+var customColors = gui.addFolder('Nastaveni barev')
 customColors.add(settings, "customColors").onChange(applyCustomColorsClass)
 customColors.addColor(settings.rankColors, "host")
 customColors.addColor(settings.rankColors, "manager")

@@ -18,9 +18,9 @@ themes.splice(0,0, {name: 'none', url: null})
 
 
 var settings = {
-	Viditelnost_postav: 1.0,
-	Viditelnost_DJe: 1.0,
-	Viditelnost_Videa: 1.0,
+	ViditelnostPostav: 1.0,
+	ViditelnostDJe: 1.0,
+	ViditelnostVidea: 1.0,
        chatOpacity: 1.0,
 	Autowoot: false,
 	inlineImages: true,
@@ -51,7 +51,7 @@ var KEYS = {
 var gui = new dat.GUI();
 gui.remember(settings);
 gui.remember(settings.rankColors)
-gui.add(settings, 'Pruhlednost_Videa',0,1).onChange(showHideVideo);
+gui.add(settings, 'PruhlednostVidea',0,1).onChange(showHideVideo);
 gui.add(settings, 'Autowoot').onChange(setWootBehavior);
 gui.add(settings, 'inlineImages').onChange(doInlineImages);
 
@@ -79,8 +79,8 @@ customColors.addColor(settings.rankColors, "self");
 
 var advanced = gui.addFolder('advanced')
 var showHide = advanced.addFolder('hide stuff')
-showHide.add(settings, 'Viditelnost_postav',0,1).onChange(showHideAudience);
-showHide.add(settings, 'Viditelnost_DJe',0,1).onChange(showHideDJ)
+showHide.add(settings, 'ViditelnostPostav',0,1).onChange(showHideAudience);
+showHide.add(settings, 'ViditelnostDJe',0,1).onChange(showHideDJ)
 showHide.add(settings, 'chatOpacity',0,1).onChange(showHideChat);
 advanced.add(settings,'spaceMute')
 advanced.add(settings,'autoWootMinTime',0,120)
@@ -166,18 +166,18 @@ function replaceText(ele) {
 	}
 }
 function showHideAudience() {
-	if(settings.Viditelnost_postav === 0) {
+	if(settings.ViditelnostPostav === 0) {
 		$('#audience').hide();
 	} else {
-		$('#audience').show().css('opacity',settings.Viditelnost_postav)
+		$('#audience').show().css('opacity',settings.ViditelnostPostav)
 	}
 }
 function showHideVideo() {
-	$('#playback').css('opacity',settings.Pruhlednost_Videa)
+	$('#playback').css('opacity',settings.PruhlednostVidea)
 
 }
 function showHideDJ() {
-	$('#dj-canvas').css('opacity',settings.Viditelnost_DJe)
+	$('#dj-canvas').css('opacity',settings.ViditelnostDJe)
 }
 function showHideChat() {
        $('#chat').css('opacity', settings.chatOpacity);

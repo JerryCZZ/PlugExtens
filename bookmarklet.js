@@ -18,10 +18,10 @@ themes.splice(0,0, {name: 'none', url: null})
 
 
 var settings = {
-	audienceOpacity: 1.0,
-	djOpacity: 1.0,
-	videoOpacity: 1.0,
-       chatOpacity: 1.0,
+	Viditelnost_postav: 1.0,
+	Viditelnost_DJe: 1.0,
+	Viditelnost_videa: 1.0,
+       Viditelnost_chatu: 1.0,
 	Automaticky_woot: false,
 	inlineImages: true,
 	theme:0,
@@ -34,15 +34,15 @@ var settings = {
 	disableOnChat: true,
 	chatReplacement: true,
 	videoSize: 'normal',
-	NastaveniBarev: false,
+	NastaveniBarev: true,
 	rankColors: {
-		host: "#ac76ff",
-		manager: "#ac76ff",
-		bouncer: "#ac76ff",
+		host: "#ff0000",
+		manager: "#00ff4a",
+		bouncer: "#ff6800",
 		resident_dj: "#ac76ff",
-    	friend: "#b0b0b0",
-		regular: "#b0b0b0",
-    	self: "#ffdd6f",
+    	friend: "#ac76ff",
+		regular: "#00d1ff",
+    	self: "#ff6800",
 	}
 }
 var KEYS = {
@@ -51,7 +51,7 @@ var KEYS = {
 var gui = new dat.GUI();
 gui.remember(settings);
 gui.remember(settings.rankColors)
-gui.add(settings, 'videoOpacity',0,1).onChange(showHideVideo);
+gui.add(settings, 'Viditelnost_videa',0,1).onChange(showHideVideo);
 gui.add(settings, 'Automaticky_woot').onChange(setWootBehavior);
 gui.add(settings, 'inlineImages').onChange(doInlineImages);
 
@@ -79,9 +79,9 @@ NastaveniBarev.addColor(settings.rankColors, "self");
 
 var advanced = gui.addFolder('advanced')
 var showHide = advanced.addFolder('hide stuff')
-showHide.add(settings, 'audienceOpacity',0,1).onChange(showHideAudience);
-showHide.add(settings, 'djOpacity',0,1).onChange(showHideDJ)
-showHide.add(settings, 'chatOpacity',0,1).onChange(showHideChat);
+showHide.add(settings, 'Viditelnost_postav',0,1).onChange(showHideAudience);
+showHide.add(settings, 'Viditelnost_DJe',0,1).onChange(showHideDJ)
+showHide.add(settings, 'Viditelnost_chatu',0,1).onChange(showHideChat);
 advanced.add(settings,'spaceMute')
 advanced.add(settings,'autoWootMinTime',0,120)
 advanced.add(settings,'autoWootMaxTime',0,120)
@@ -166,21 +166,21 @@ function replaceText(ele) {
 	}
 }
 function showHideAudience() {
-	if(settings.audienceOpacity === 0) {
+	if(settings.Viditelnost_postav === 0) {
 		$('#audience').hide();
 	} else {
-		$('#audience').show().css('opacity',settings.audienceOpacity)
+		$('#audience').show().css('opacity',settings.Viditelnost_postav)
 	}
 }
 function showHideVideo() {
-	$('#playback').css('opacity',settings.videoOpacity)
+	$('#playback').css('opacity',settings.Viditelnost_videa)
 
 }
 function showHideDJ() {
-	$('#dj-canvas').css('opacity',settings.djOpacity)
+	$('#dj-canvas').css('opacity',settings.Viditelnost_DJe)
 }
 function showHideChat() {
-       $('#chat').css('opacity', settings.chatOpacity);
+       $('#chat').css('opacity', settings.Viditelnost_chatu);
 }
 
 function chatReceived(data) {

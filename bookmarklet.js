@@ -52,7 +52,7 @@ var gui = new dat.GUI();
 gui.remember(settings);
 gui.remember(settings.rankColors)
 gui.add(settings, 'videoOpacity',0,1).onChange(showHideVideo);
-gui.add(settings, 'autowoot').onChange(setWootBehavior);
+gui.add(settings, 'test').onChange(setWootBehavior);
 gui.add(settings, 'inlineImages').onChange(doInlineImages);
 
 gui.add(settings,'videoSize', ['normal','large']).onChange(updateVideoSize)
@@ -269,7 +269,7 @@ function advance(obj)
 	clearTimeout(djCheckTimeout);
 	if (obj == null) return; // no dj
 
-	if(settings.autowoot) {
+	if(settings.test) {
 		var minTime = settings.autoWootMinTime * 1000;
 		var maxTime = settings.autoWootMaxTime * 1000;
 		if(maxTime < minTime) {
@@ -292,8 +292,8 @@ function advance(obj)
 	}
 }
 function setWootBehavior() {
-	//console.log('set woot' + settings.autowoot)
-	if(settings.autowoot) {
+	//console.log('set woot' + settings.test)
+	if(settings.test) {
 		voteTimeout = setTimeout(vote,10000);
 	} else {
 		clearTimeout(voteTimeout)

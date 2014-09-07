@@ -18,31 +18,31 @@ themes.splice(0,0, {name: 'none', url: null})
 
 
 var settings = {
-	audienceOpacity: 1.0,
-	djOpacity: 1.0,
-	videoOpacity: 1.0,
-       chatOpacity: 1.0,
-	test: true,
+	Průhlednost postav: 1.0,
+	Průhlednost DJe: 1.0,
+	Průhlednost videa: 1.0,
+       Průhlednost chatu: 1.0,
+	Automatycký woot: true,
 	inlineImages: true,
-	theme:0,
-	spaceMute: false,
-	autoWootMinTime: 1,
-	autoWootMaxTime: 120,
-	frontOfLineMessage:false,
-	autoRespond: false,
-	autoRespondMsg: ":bangbang: Jsem AFK..možná :trollface: .. když chvilinku vydržíš tak se určitě vrátím.. Zatím si dej třeba.. :banana:",
-	disableOnChat: true,
-	chatReplacement: true,
-	videoSize: 'normal',
-	customColors: false,
+	Vzhled:0,
+	Ztlumení Mezerníkem: false,
+	AutoWootMinČas: 1,
+	autoWootMaxČas: 120,
+	Zpráva když jsi na řadě:false,
+	Automatická odpověď: false,
+	AFK zpráva: "Právě jsem AFK",
+	Vypnout při chatu: true,
+	???: true,
+	Velikost videa: 'normal',
+	Nastavení barev: false,
 	rankColors: {
-		host: "#ac76ff",
-		manager: "#ac76ff",
-		bouncer: "#ac76ff",
-		resident_dj: "#ac76ff",
-    	friend: "#b0b0b0",
-		regular: "#b0b0b0",
-    	self: "#ffdd6f",
+		Host: "#ac76ff",
+		Manažer: "#ac76ff",
+		Vyhazovač: "#ac76ff",
+		Rezidentní DJ: "#ac76ff",
+    	Přátelé: "#b0b0b0",
+		Ostatní: "#b0b0b0",
+    	Já: "#ffdd6f",
 	}
 }
 var KEYS = {
@@ -51,42 +51,42 @@ var KEYS = {
 var gui = new dat.GUI();
 gui.remember(settings);
 gui.remember(settings.rankColors)
-gui.add(settings, 'videoOpacity',0,1).onChange(showHideVideo);
-gui.add(settings, 'test').onChange(setWootBehavior);
+gui.add(settings, 'Průhlednost videa',0,1).onChange(showHideVideo);
+gui.add(settings, 'Automatycký woot').onChange(setWootBehavior);
 gui.add(settings, 'inlineImages').onChange(doInlineImages);
 
-gui.add(settings,'videoSize', ['normal','large']).onChange(updateVideoSize)
+gui.add(settings,'Velikost videa', ['normal','large']).onChange(updateVelikost videa)
 var themeSettingsObject = {}
 for(var i = 0; i < themes.length; i++) {
-	var theme = themes[i];
+	var Vzhled = themes[i];
 	themeSettingsObject[theme.name] = i;
 }
-gui.add(settings, 'theme', themeSettingsObject).onChange(showTheme)
-var afk = gui.addFolder('autoRespond')
-afk.add(settings, "autoRespond")
-afk.add(settings, "autoRespondMsg")
-afk.add(settings, "disableOnChat") //listen didn't seem to work
+gui.add(settings, 'Vzhled', themeSettingsObject).onChange(showTheme)
+var afk = gui.addFolder('Automatická odpověď')
+afk.add(settings, "Automatická odpověď")
+afk.add(settings, "AFK zpráva")
+afk.add(settings, "Vypnout při chatu") //listen didn't seem to work
 
 var customColors = gui.addFolder('Nastavení barev')
-customColors.add(settings, "customColors").onChange(applyCustomColorsClass)
-customColors.addColor(settings.rankColors, "host")
-customColors.addColor(settings.rankColors, "manager")
-customColors.addColor(settings.rankColors, "bouncer")
-customColors.addColor(settings.rankColors, "resident_dj")
-customColors.addColor(settings.rankColors, "regular")
+customColors.add(settings, "Nastavení barev").onChange(applyCustomColorsClass)
+customColors.addColor(settings.rankColors, "Host")
+customColors.addColor(settings.rankColors, "Manažer")
+customColors.addColor(settings.rankColors, "Vyhazovač")
+customColors.addColor(settings.rankColors, "Rezidentní DJ")
+customColors.addColor(settings.rankColors, "Ostatní")
 //customColors.addColor(settings.rankColors, "friend")    // Don't see the ability to get friends from the API
-customColors.addColor(settings.rankColors, "self");
+customColors.addColor(settings.rankColors, "Já");
 
 var advanced = gui.addFolder('advanced')
 var showHide = advanced.addFolder('hide stuff')
-showHide.add(settings, 'audienceOpacity',0,1).onChange(showHideAudience);
-showHide.add(settings, 'djOpacity',0,1).onChange(showHideDJ)
-showHide.add(settings, 'chatOpacity',0,1).onChange(showHideChat);
-advanced.add(settings,'spaceMute')
-advanced.add(settings,'autoWootMinTime',0,120)
-advanced.add(settings,'autoWootMaxTime',0,120)
-advanced.add(settings,'frontOfLineMessage')
-advanced.add(settings, "chatReplacement")
+showHide.add(settings, 'Průhlednost postav',0,1).onChange(showHideAudience);
+showHide.add(settings, 'Průhlednost DJe',0,1).onChange(showHideDJ)
+showHide.add(settings, 'Průhlednost chatu',0,1).onChange(showHideChat);
+advanced.add(settings,'Ztlumení Mezerníkem')
+advanced.add(settings,'AutoWootMinČas',0,120)
+advanced.add(settings,'autoWootMaxČas',0,120)
+advanced.add(settings,'Zpráva když jsi na řadě')
+advanced.add(settings, "???")
 $('.dg').css("z-index",30).css('right','auto').css('top','65px')
 $('.dg .save-row').hide()
 $('.dg select').css('width', '130px')
@@ -124,7 +124,7 @@ function once() {
 	//console.log(themes)
 	
 	setWootBehavior();
-	setTimeout(updateVideoSize, 1000)
+	setTimeout(updateVelikost videa, 1000)
 	showTheme()
 	setTimeout(showTheme,3000);
 	setTimeout(showTheme,8000);
@@ -133,12 +133,12 @@ function once() {
 function documentKeyDown(event) {
 	var target = event.target.tagName.toLowerCase()
 	if(target === 'input') {
-		if($(event.target).attr('id') === 'chat-input-field' && settings.chatReplacement) {
+		if($(event.target).attr('id') === 'chat-input-field' && settings.???) {
 			replaceText(event.target)
 		}
 		return;
 	}
-	if(event.which === KEYS.SPACE && settings.spaceMute) {
+	if(event.which === KEYS.SPACE && settings.Ztlumení Mezerníkem) {
 		$('#volume .button').click()
 	}
 
@@ -166,21 +166,21 @@ function replaceText(ele) {
 	}
 }
 function showHideAudience() {
-	if(settings.audienceOpacity === 0) {
+	if(settings.Průhlednost postav === 0) {
 		$('#audience').hide();
 	} else {
-		$('#audience').show().css('opacity',settings.audienceOpacity)
+		$('#audience').show().css('opacity',settings.Průhlednost postav)
 	}
 }
 function showHideVideo() {
-	$('#playback').css('opacity',settings.videoOpacity)
+	$('#playback').css('opacity',settings.Průhlednost videa)
 
 }
 function showHideDJ() {
-	$('#dj-canvas').css('opacity',settings.djOpacity)
+	$('#dj-canvas').css('opacity',settings.Průhlednost DJe)
 }
 function showHideChat() {
-       $('#chat').css('opacity', settings.chatOpacity);
+       $('#chat').css('opacity', settings.Průhlednost chatu);
 }
 
 function chatReceived(data) {
@@ -189,20 +189,20 @@ function chatReceived(data) {
 	var fromSelf = false;
 	if(username === data.un) {
 		fromSelf = true;
-		if(settings.disableOnChat && settings.autoRespond) {
-			settings.autoRespond = false;
+		if(settings.Vypnout při chatu && settings.Automatická odpověď) {
+			settings.Automatická odpověď = false;
 			updateGUI()
 
 		}
 	}
 	if(msg.indexOf(username) !== -1 && ! fromSelf) {
 		//mentioned
-		if(settings.autoRespond) {
+		if(settings.Automatická odpověď) {
 			var timeLimitPerUser = 1000 * 60 * 3;
 			var now = new Date().getTime();
 			var validTime = now - timeLimitPerUser;
 			if(typeof autoResponseSentTimes[data.un] === 'undefined' || autoResponseSentTimes[data.un] < validTime) {
-				var response = '@' + data.un + ' ' + settings.autoRespondMsg;
+				var response = '@' + data.un + ' ' + settings.AFK zpráva;
 				API.sendChat(response);
 				autoResponseSentTimes[data.un] = now;
 			}
@@ -269,9 +269,9 @@ function advance(obj)
 	clearTimeout(djCheckTimeout);
 	if (obj == null) return; // no dj
 
-	if(settings.test) {
-		var minTime = settings.autoWootMinTime * 1000;
-		var maxTime = settings.autoWootMaxTime * 1000;
+	if(settings.Automatycký woot) {
+		var minTime = settings.AutoWootMinČas * 1000;
+		var maxTime = settings.autoWootMaxČas * 1000;
 		if(maxTime < minTime) {
 			maxTime = minTime;
 		}
@@ -279,10 +279,10 @@ function advance(obj)
 		var timer = minTime + diffTime * Math.random();
 		voteTimeout = setTimeout(vote,timer);
 	}
-	if(settings.videoSize === 'large') {
+	if(settings.Velikost videa === 'large') {
 		setTimeout(insertLargeCSS, 200)
 	}
-	if(settings.frontOfLineMessage) {
+	if(settings.Zpráva když jsi na řadě) {
 		if(API.getWaitListPosition() === 0) {
 			API.chatLog("@" + API.getUser().username + " you are next in line, hope you got a good song ready!", true);
 			if($('#chat-sound-button .icon').hasClass('icon-chat-sound-on')) {
@@ -292,8 +292,8 @@ function advance(obj)
 	}
 }
 function setWootBehavior() {
-	//console.log('set woot' + settings.test)
-	if(settings.test) {
+	//console.log('set woot' + settings.Automatycký woot)
+	if(settings.Automatycký woot) {
 		voteTimeout = setTimeout(vote,10000);
 	} else {
 		clearTimeout(voteTimeout)
@@ -338,7 +338,7 @@ function showTheme() {
 		originalTheme = $(bgSelector).css('background-image');
 	}
 	var theme = themes[settings.theme];
-	if(settings.videoSize === 'normal') {
+	if(settings.Velikost videa === 'normal') {
 		//console.log(theme);
 		if(theme.name === 'none') {
 			$(bgSelector).css('background-image', originalTheme);
@@ -406,10 +406,10 @@ function updateFolders(f) {
 		updateFolders(folder);
 	}
 }
-function updateVideoSize() {
-	if(settings.videoSize === 'normal') {
+function updateVelikost videa() {
+	if(settings.Velikost videa === 'normal') {
 		applyNormalVideo()
-	} else if(settings.videoSize === 'large') {
+	} else if(settings.Velikost videa === 'large') {
 		applyLargeVideo()
 
 	}

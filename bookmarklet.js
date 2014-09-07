@@ -152,7 +152,6 @@ function replaceText(ele) {
 		'/disapproval': 'ಠ_ಠ',
 		'/donger': 'ヽ༼ຈل͜ຈ༽ﾉ',
 		'/give': '༼ つ ◕◡◕ ༽つ'
-    '/dog': 'ヽ༼ຈل'
 	}
 	$ele = $(ele);
 	var curText = $ele.val();

@@ -22,7 +22,7 @@ var settings = {
 	djOpacity: 1.0,
 	videoOpacity: 1.0,
        chatOpacity: 1.0,
-	Automatický woot: false,
+	Automatick˜ woot: false,
 	inlineImages: true,
 	theme:0,
 	spaceMute: true,
@@ -30,7 +30,7 @@ var settings = {
 	autoWootMaxTime: 120,
 	frontOfLineMessage:true,
 	autoRespond: false,
-	autoRespondMsg: "Jsem AFK, vydrž chvíli",
+	autoRespondMsg: "Jsem AFK, vydr‘ chv¡li",
 	disableOnChat: true,
 	chatReplacement: true,
 	videoSize: 'normal',
@@ -52,7 +52,7 @@ var gui = new dat.GUI();
 gui.remember(settings);
 gui.remember(settings.rankColors)
 gui.add(settings, 'videoOpacity',0,1).onChange(showHideVideo);
-gui.add(settings, 'Automatický woot').onChange(setWootBehavior);
+gui.add(settings, 'Automatick˜ woot').onChange(setWootBehavior);
 gui.add(settings, 'inlineImages').onChange(doInlineImages);
 
 gui.add(settings,'videoSize', ['normal','large']).onChange(updateVideoSize)
@@ -145,9 +145,9 @@ function documentKeyDown(event) {
 }
 function replaceText(ele) {
 	var replacements = {
-		'/whatever': '—\\_(?)_/—',
+		'/whatever': '-\\_(?)_/-',
 		'/tableflip': '(?°?°)?? ???',
-		'/tablefix': 'T¦T?( o _ o?)',
+		'/tablefix': 'T|T?( o _ o?)',
 		'/monocle': '?_??',
 		'/disapproval': '?_?',
 		'/donger': '????????',
@@ -269,7 +269,7 @@ function advance(obj)
 	clearTimeout(djCheckTimeout);
 	if (obj == null) return; // no dj
 
-	if(settings.Automatický woot) {
+	if(settings.Automatick˜ woot) {
 		var minTime = settings.autoWootMinTime * 1000;
 		var maxTime = settings.autoWootMaxTime * 1000;
 		if(maxTime < minTime) {
@@ -292,8 +292,8 @@ function advance(obj)
 	}
 }
 function setWootBehavior() {
-	//console.log('set woot' + settings.Automatický woot)
-	if(settings.Automatický woot) {
+	//console.log('set woot' + settings.Automatick˜ woot)
+	if(settings.Automatick˜ woot) {
 		voteTimeout = setTimeout(vote,10000);
 	} else {
 		clearTimeout(voteTimeout)

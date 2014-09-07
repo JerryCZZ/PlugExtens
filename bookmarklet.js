@@ -21,9 +21,9 @@ var settings = {
 	ViditelnostPostav: 1.0,
 	ViditelnostDJe: 1.0,
 	ViditelnostVidea: 1.0,
-       chatOpacity: 1.0,
+       ViditelnostChatu: 1.0,
 	Autowoot: false,
-	inlineImages: true,
+	VlozeneObrazky: true,
 	theme:0,
 	spaceMute: true,
 	autoWootMinTime: 60,
@@ -53,7 +53,8 @@ gui.remember(settings);
 gui.remember(settings.rankColors)
 gui.add(settings, 'PruhlednostVidea',0,1).onChange(showHideVideo);
 gui.add(settings, 'Autowoot').onChange(setWootBehavior);
-gui.add(settings, 'inlineImages').onChange(doInlineImages);
+gui.add(settings, '
+').onChange(doVlozeneObrazky);
 
 gui.add(settings,'videoSize', ['normal','large']).onChange(updateVideoSize)
 var themeSettingsObject = {}
@@ -81,7 +82,7 @@ var advanced = gui.addFolder('advanced')
 var showHide = advanced.addFolder('hide stuff')
 showHide.add(settings, 'ViditelnostPostav',0,1).onChange(showHideAudience);
 showHide.add(settings, 'ViditelnostDJe',0,1).onChange(showHideDJ)
-showHide.add(settings, 'chatOpacity',0,1).onChange(showHideChat);
+showHide.add(settings, 'ViditelnostChatu',0,1).onChange(showHideChat);
 advanced.add(settings,'spaceMute')
 advanced.add(settings,'autoWootMinTime',0,120)
 advanced.add(settings,'autoWootMaxTime',0,120)
@@ -93,7 +94,7 @@ $('.dg select').css('width', '130px')
 
 //$('body').css('background-size', '100%')
 var originalTheme = null;
-var inlineImagesInterval = null;
+var VlozeneObrazkyInterval = null;
 $(once);
 function once() {
 	if(typeof ran !== "undefined") {
@@ -120,7 +121,7 @@ function once() {
 	showHideVideo();
        showHideChat();
 
-	doInlineImages();
+	doVlozeneObrazky();
 	//console.log(themes)
 	
 	setWootBehavior();
@@ -180,7 +181,7 @@ function showHideDJ() {
 	$('#dj-canvas').css('opacity',settings.ViditelnostDJe)
 }
 function showHideChat() {
-       $('#chat').css('opacity', settings.chatOpacity);
+       $('#chat').css('opacity', settings.ViditelnostChatu);
 }
 
 function chatReceived(data) {
@@ -353,10 +354,10 @@ function showTheme() {
 	}
 }
 
-function doInlineImages() {
-	if(settings.inlineImages) {
+function doVlozeneObrazky() {
+	if(settings.VlozeneObrazky) {
 		//console.log('set interval');
-		inlineImagesInterval = setInterval(function() {
+		VlozeneObrazkyInterval = setInterval(function() {
 		    $(".closeImage").off("click");
 		    $(".closeImage").on("click", function () {
 		        var parent = $(this).parent();
@@ -388,7 +389,7 @@ function doInlineImages() {
 		    })
 		},1e3)
 	} else {
-		clearInterval(inlineImagesInterval)
+		clearInterval(VlozeneObrazkyInterval)
 	}
 }
 

@@ -1976,8 +1976,8 @@ dat.GUI = dat.gui.GUI = (function (css, saveDialogueContents, styleSheet, contro
   GUI.CLASS_DRAG = 'drag';
 
   GUI.DEFAULT_WIDTH = 300;
-  GUI.TEXT_CLOSED = 'Zavrit';
-  GUI.TEXT_OPEN = '<img src="http://jerryczz.github.io/PlugExtens/images/show.png" alt="Zobrazit" height="38" width="38">';
+  GUI.TEXT_CLOSED = '<img width="38" height="38" src="images/hide.png">';
+  GUI.TEXT_OPEN = '<img width="38" height="38" src="images/show.png">';
 
   /*
   //how about no.

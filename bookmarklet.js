@@ -26,7 +26,7 @@ var settings = {
 	VlozeneObrazky: true,
 	Vzhled:0,
 	spaceMute: true,
-	autoWootMinTime: 60,
+	autoWootMinTime: 2,
 	autoWootMaxTime: 120,
 	frontOfLineMessage:true,
 	AutoOdpoved: false,

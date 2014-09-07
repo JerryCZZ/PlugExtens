@@ -85,8 +85,7 @@ showHide.add(settings, 'Viditelnost_chatu',0,1).onChange(showHideChat);
 advanced.add(settings,'spaceMute')
 advanced.add(settings,'autoWootMinTime',0,120)
 advanced.add(settings,'autoWootMaxTime',0,120)
-advanced.add(settings,'frontOfLineMessage')
-advanced.add(settings,'Seznam_smajliku')
+advanced.add(settings,'frontOfLineMessage')   
 advanced.add(settings, "chatReplacement")
 $('.dg').css("z-index",30).css('right','auto').css('top','65px')
 $('.dg .save-row').hide()
@@ -144,19 +143,6 @@ function documentKeyDown(event) {
 	}
 
 }
-function documentKeyDown(event) {
-	var target = event.target.tagName.toLowerCase()
-	if(target === 'input') {
-		if($(event.target).attr('id') === 'chat-input-field' && settings.Seznam_smajliku) {
-			replaceText(event.target)
-		}
-		return;
-	}
-	if(event.which === KEYS.SPACE && settings.spaceMute) {
-		$('#volume .button').click()
-  }
-
-}   
 function replaceText(ele) {
 	var replacements = {
 		'/whatever': '-\\_(?)_/-',

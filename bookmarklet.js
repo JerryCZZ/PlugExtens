@@ -279,7 +279,7 @@ function advance(obj)
 		var timer = minTime + diffTime * Math.random();
 		voteTimeout = setTimeout(vote,timer);
 	}
-	if(settings.videoSize === 'Velky') {
+	if(settings.videoSize === 'large') {
 		setTimeout(insertLargeCSS, 200)
 	}
 	if(settings.frontOfLineMessage) {
@@ -409,7 +409,7 @@ function updateFolders(f) {
 function updateVideoSize() {
 	if(settings.videoSize === 'normalni') {
 		applyNormalVideo()
-	} else if(settings.videoSize === 'Velky') {
+	} else if(settings.videoSize === 'large') {
 		applyLargeVideo()
 
 	}

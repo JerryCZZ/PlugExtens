@@ -31,7 +31,7 @@ var settings = {
 	frontOfLineMessage:true,
 	AutoOdpoved: false,
 	Zprava: "Jsem AFK, vydrž chvíli.",
-	disableOnChat: true,
+	VypnoutPriChatu: true,
 	chatReplacement: true,
 	VelikostVidea: 'normalni',
 	customColors: false,

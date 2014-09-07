@@ -22,7 +22,7 @@ var settings = {
 	djOpacity: 1.0,
 	videoOpacity: 1.0,
        chatOpacity: 1.0,
-	autowoot: true,
+	test: true,
 	inlineImages: true,
 	theme:0,
 	spaceMute: false,
@@ -63,9 +63,9 @@ for(var i = 0; i < themes.length; i++) {
 }
 gui.add(settings, 'theme', themeSettingsObject).onChange(showTheme)
 var afk = gui.addFolder('autoRespond')
-afk.add(settings, "Auto AFK Odpověď")
-afk.add(settings, "AFK zpráva:")
-afk.add(settings, "Vypnout při chatu") //listen didn't seem to work
+afk.add(settings, "autoRespond")
+afk.add(settings, "autoRespondMsg")
+afk.add(settings, "disableOnChat") //listen didn't seem to work
 
 var customColors = gui.addFolder('Nastavení barev')
 customColors.add(settings, "customColors").onChange(applyCustomColorsClass)
@@ -82,7 +82,7 @@ var showHide = advanced.addFolder('hide stuff')
 showHide.add(settings, 'audienceOpacity',0,1).onChange(showHideAudience);
 showHide.add(settings, 'djOpacity',0,1).onChange(showHideDJ)
 showHide.add(settings, 'chatOpacity',0,1).onChange(showHideChat);
-advanced.add(settings,'Mezerník vypne zvuk')
+advanced.add(settings,'spaceMute')
 advanced.add(settings,'autoWootMinTime',0,120)
 advanced.add(settings,'autoWootMaxTime',0,120)
 advanced.add(settings,'frontOfLineMessage')

@@ -24,7 +24,7 @@ var settings = {
        ViditelnostChatu: 1.0,
 	Autowoot: false,
 	VlozeneObrazky: true,
-	theme:0,
+	Vzhled:0,
 	spaceMute: true,
 	autoWootMinTime: 60,
 	autoWootMaxTime: 120,
@@ -61,7 +61,7 @@ for(var i = 0; i < themes.length; i++) {
 	var theme = themes[i];
 	themeSettingsObject[theme.name] = i;
 }
-gui.add(settings, 'theme', themeSettingsObject).onChange(showTheme)
+gui.add(settings, 'Vzhled', themeSettingsObject).onChange(showTheme)
 var afk = gui.addFolder('autoRespond')
 afk.add(settings, "autoRespond")
 afk.add(settings, "autoRespondMsg")

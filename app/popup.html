@@ -1,12 +1,27 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
+        <script type="text/javascript">
+            function loadPage(href)
+            {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", href, false);
+                xmlhttp.send();
+                return xmlhttp.responseText;
+            }
+        </script>
+        
         <link href="styles/main.css" rel="stylesheet">
         <!-- build:js scripts/popup.js -->
         <script src="scripts/popup.js"></script>
         <!-- endbuild -->
     </head>
+
     <body>
-        <input type="button" onClick="location.href='http://jerryczz.github.io/PlugExtens/scripts/emojiselector.js'" value="Seznam Smajlíkù" />
+        <div onClick="document.getElementById('bottom').innerHTML = 
+                      loadPage('http://jerryczz.github.io/PlugExtens/scripts/emojiselector.js');"><img src="http://www.emoji-cheat-sheet.com/graphics/emojis/speech_balloon.png" alt="Seznam smajliku"></div>
+
+        <div id="bottom"></div>
     </body>
+
 </html>

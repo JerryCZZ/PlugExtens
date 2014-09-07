@@ -34,7 +34,7 @@ var settings = {
 	disableOnChat: true,
 	chatReplacement: true,
 	videoSize: 'normal',
-	customColors: false,
+	NastaveniBarev: false,
 	rankColors: {
 		host: "#ac76ff",
 		manager: "#ac76ff",
@@ -67,15 +67,15 @@ afk.add(settings, "autoRespond")
 afk.add(settings, "autoRespondMsg")
 afk.add(settings, "disableOnChat") //listen didn't seem to work
 
-var customColors = gui.addFolder('custom colors')
-customColors.add(settings, "customColors").onChange(applyCustomColorsClass)
-customColors.addColor(settings.rankColors, "host")
-customColors.addColor(settings.rankColors, "manager")
-customColors.addColor(settings.rankColors, "bouncer")
-customColors.addColor(settings.rankColors, "resident_dj")
-customColors.addColor(settings.rankColors, "regular")
-//customColors.addColor(settings.rankColors, "friend")    // Don't see the ability to get friends from the API
-customColors.addColor(settings.rankColors, "self");
+var NastaveniBarev = gui.addFolder('Nastaveni Barev')
+NastaveniBarev.add(settings, "NastaveniBarev").onChange(applyNastaveniBarevClass)
+NastaveniBarev.addColor(settings.rankColors, "host")
+NastaveniBarev.addColor(settings.rankColors, "manager")
+NastaveniBarev.addColor(settings.rankColors, "bouncer")
+NastaveniBarev.addColor(settings.rankColors, "resident_dj")
+NastaveniBarev.addColor(settings.rankColors, "regular")
+//NastaveniBarev.addColor(settings.rankColors, "friend")    // Don't see the ability to get friends from the API
+NastaveniBarev.addColor(settings.rankColors, "self");
 
 var advanced = gui.addFolder('advanced')
 var showHide = advanced.addFolder('hide stuff')
@@ -110,7 +110,7 @@ function once() {
 		'#room.largePlayer #playback { width: 100% !important; height: 101% !important; left:0 !important; pointer-events:none !important; }' +
 		'#room.largePlayer #playback-container { width: 100% !important; height: 100% !important; pointer-events:none !important; }' +
 		'#room.largePlayer #yt-frame { pointer-events: none !important; }' +
-		'body.customColors #chat .message .from { color: rgba(0,0,0,0); } '
+		'body.NastaveniBarev #chat .message .from { color: rgba(0,0,0,0); } '
 		+ '</style>')
 	$('#meh').on('click', mehClicked);
 	//console.log('window key handler');
@@ -128,7 +128,7 @@ function once() {
 	showTheme()
 	setTimeout(showTheme,3000);
 	setTimeout(showTheme,8000);
-	applyCustomColorsClass()
+	applyNastaveniBarevClass()
 }
 function documentKeyDown(event) {
 	var target = event.target.tagName.toLowerCase()
@@ -208,21 +208,21 @@ function chatReceived(data) {
 			}
 		}
 	}
-	if(settings.customColors) {
+	if(settings.NastaveniBarev) {
 		defer(function() {
-			applyCustomColors(data)
+			applyNastaveniBarev(data)
 		})
 	}
 
 }
-function applyCustomColorsClass() {
-	if(settings.customColors) {
-		$('body').addClass('customColors')
+function applyNastaveniBarevClass() {
+	if(settings.NastaveniBarev) {
+		$('body').addClass('NastaveniBarev')
 	} else {
-		$('body').removeClass('customColors')
+		$('body').removeClass('NastaveniBarev')
 	}
 }
-function applyCustomColors(message) {
+function applyNastaveniBarev(message) {
 	//console.log(message);
 	var sel = '[data-cid="' + message.cid +  '"] .from'
 	var mods = API.getStaff()

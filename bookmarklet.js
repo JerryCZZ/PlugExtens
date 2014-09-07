@@ -29,7 +29,7 @@ var settings = {
 	autoWootMinTime: 2,
 	autoWootMaxTime: 120,
 	frontOfLineMessage:true,
-	Auto Odpoved: false,
+	AutoOdpoved: false,
 	Zprava: "Jsem AFK, vydrž chvíli.",
 	VypnoutPriChatu: true,
 	chatReplacement: true,
@@ -62,7 +62,7 @@ for(var i = 0; i < themes.length; i++) {
 	themeSettingsObject[theme.name] = i;
 }
 gui.add(settings, 'Vzhled', themeSettingsObject).onChange(showTheme)
-var afk = gui.addFolder('Auto Odpoved')
+var afk = gui.addFolder('AutoOdpoved')
 afk.add(settings, "AutoOdpoved")
 afk.add(settings, "Zprava")
 afk.add(settings, "VypnoutPriChatu") //listen didn't seem to work

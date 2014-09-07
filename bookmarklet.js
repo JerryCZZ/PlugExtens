@@ -30,7 +30,7 @@ var settings = {
 	autoWootMaxTime: 120,
 	frontOfLineMessage:true,
 	AutoOdpoved: false,
-	autoRespondMsg: "Jsem AFK, vydrž chvíli.",
+	Zprava: "Jsem AFK, vydrž chvíli.",
 	disableOnChat: true,
 	chatReplacement: true,
 	VelikostVidea: 'normalni',
@@ -189,20 +189,20 @@ function chatReceived(data) {
 	var fromSelf = false;
 	if(username === data.un) {
 		fromSelf = true;
-		if(settings.disableOnChat && settings.AutoOdpoved) {
-			settings.AutoOdpoved = false;
+		if(settings.disableOnChat && settings.autoRespond) {
+			settings.autoRespond = false;
 			updateGUI()
 
 		}
 	}
 	if(msg.indexOf(username) !== -1 && ! fromSelf) {
 		//mentioned
-		if(settings.AutoOdpoved) {
+		if(settings.autoRespond) {
 			var timeLimitPerUser = 1000 * 60 * 3;
 			var now = new Date().getTime();
 			var validTime = now - timeLimitPerUser;
 			if(typeof autoResponseSentTimes[data.un] === 'undefined' || autoResponseSentTimes[data.un] < validTime) {
-				var response = '@' + data.un + ' ' + settings.autoRespondMsg;
+				var response = '@' + data.un + ' ' + settings.Zprava;
 				API.sendChat(response);
 				autoResponseSentTimes[data.un] = now;
 			}

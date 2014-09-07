@@ -61,7 +61,7 @@ for(var i = 0; i < themes.length; i++) {
 	var theme = themes[i];
 	themeSettingsObject[theme.name] = i;
 }
-gui.add(settings, 'Vzhled', themeSettingsObject).onChange(showTheme)
+gui.add(settings, 'theme', themeSettingsObject).onChange(showTheme)
 var afk = gui.addFolder('autoRespond')
 afk.add(settings, "Auto AFK Odpověď")
 afk.add(settings, "AFK zpráva:")

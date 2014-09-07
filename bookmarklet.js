@@ -68,7 +68,7 @@ afk.add(settings, "Zprava")
 afk.add(settings, "VypnoutPriChatu") //listen didn't seem to work
 
 var customColors = gui.addFolder('Nastaveni barev')
-customColors.add(settings, "customColors").onChange(applyCustomColorsClass)
+customColors.add(settings, "NastaveniBarev").onChange(applyCustomColorsClass)
 customColors.addColor(settings.rankColors, "host")
 customColors.addColor(settings.rankColors, "manager")
 customColors.addColor(settings.rankColors, "bouncer")

@@ -24,7 +24,7 @@ var settings = {
        Viditelnost_chatu: 1.0,
 	Automaticky_woot: false,
 	inlineImages: true,
-	Vzhled:0,
+	theme:0,
 	spaceMute: true,
 	autoWootMinTime: 5,
 	autoWootMaxTime: 120,
@@ -58,10 +58,11 @@ gui.add(settings, 'inlineImages').onChange(doInlineImages);
 gui.add(settings,'videoSize', ['normal','large']).onChange(updateVideoSize)
 var themeSettingsObject = {}
 for(var i = 0; i < themes.length; i++) {
-	var Vzhled = themes[i];
+	var theme = themes[i];
 	themeSettingsObject[theme.name] = i;
 }
-gui.add(settings, 'Vzhled', themeSettingsObject).onChange(showTheme)
+gui.add(settings, 'Theme
+', themeSettingsObject).onChange(showTheme)
 var afk = gui.addFolder('autoRespond')
 afk.add(settings, "autoRespond")
 afk.add(settings, "autoRespondMsg")
@@ -330,16 +331,16 @@ function checkIfDJing() {
 }
 function showTheme() {
 	var bgSelector = '.room-background'
-	//console.log('show Vzhled');
+	//console.log('show theme');
 	if($(bgSelector).length === 0) {
 		setTimeout(showTheme, 500)
 	}
 	if(originalTheme === null) {
 		originalTheme = $(bgSelector).css('background-image');
 	}
-	var Vzhled = themes[settings.theme];
+	var Theme = themes[settings.theme];
 	if(settings.videoSize === 'normal') {
-		//console.log(Vzhled);
+		//console.log(theme);
 		if(theme.name === 'none') {
 			$(bgSelector).css('background-image', originaltheme);
 			$('#playback .background').show();

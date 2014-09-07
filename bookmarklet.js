@@ -189,15 +189,15 @@ function chatReceived(data) {
 	var fromSelf = false;
 	if(username === data.un) {
 		fromSelf = true;
-		if(settings.disableOnChat && settings.autoRespond) {
-			settings.autoRespond = false;
+		if(settings.disableOnChat && settings.AutoOdpoved) {
+			settings.AutoOdpoved = false;
 			updateGUI()
 
 		}
 	}
 	if(msg.indexOf(username) !== -1 && ! fromSelf) {
 		//mentioned
-		if(settings.autoRespond) {
+		if(settings.AutoOdpoved) {
 			var timeLimitPerUser = 1000 * 60 * 3;
 			var now = new Date().getTime();
 			var validTime = now - timeLimitPerUser;
